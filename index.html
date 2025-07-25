@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Para Ti ✨</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@200;300;400&family=Playfair+Display:wght@300;400;700&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: 'Inter', sans-serif;
+      cursor: none;
+      background: #000;
+    }
+
+    /* Cursor personalizado mejorado */
+    .cursor {
+      position: fixed;
+      width: 30px;
+      height: 30px;
+      background: radial-gradient(circle, rgba(255,215,0,0.8) 0%, rgba(255,69,0,0.6) 50%, rgba(138,43,226,0.4) 100%);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+      mix-blend-mode: screen;
+      box-shadow: 0 0 20px rgba(255,215,0,0.5);
+    }
+
+    .cursor.hover {
+      transform: scale(2);
+      background: radial-gradient(circle, rgba(255,20,147,0.9) 0%, rgba(138,43,226,0.7) 100%);
+    }
+
+    /* PORTADA MEJORADA */
+    .portada {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe, #ff0844);
+      background-size: 400% 400%;
+      animation: ultraGradient 15s ease infinite;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      transition: all 2s cubic-bezier(0.4, 0.0, 0.2, 1);
+      overflow: hidden;
+    }
+
+    .portada::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.5" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      opacity: 0.3;
+      animation: textureMove 20s linear infinite;
+    }
+
+    @keyframes textureMove {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-100px, -100px); }
+    }
+
+    .portada.fade-out {
+      opacity: 0;
+      transform: scale(1.2) rotateX(90deg);
+      pointer-events: none;
+    }
+
+    @keyframes ultraGradient {
+      0% { background-position: 0% 50%; }
+      25% { background-position: 100% 25%; }
+      50% { background-position: 100% 100%; }
+      75% { background-position: 50% 100%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .portada-content {
+      text-align: center;
+      color: white;
+      text-shadow: 0 8px 32px rgba(0,0,0,0.5);
+      position: relative;
+      z-index: 2;
+    }
+
+    .portada-titulo {
+      font-family: 'Playfair Display', serif;
+      font-size: 9em;
+      font-weight: 700;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(100px) rotateX(90deg);
+      animation: dramaticEntrance 2.5s cubic-bezier(0.23, 1, 0.32, 1) 0.5s forwards;
+      background: linear-gradient(45deg, #fff, #ffd700, #ff69b4, #00bfff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+    }
+
+    .portada-subtitulo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8em;
+      font-weight: 300;
+      margin-bottom: 30px;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: elegantFade 2s ease-out 1.2s forwards;
+      letter-spacing: 3px;
+    }
+
+    /* Campos informativos */
+    .portada-info {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin: 40px 0;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: elegantFade 2s ease-out 1.8s forwards;
+      max-width: 800px;
+    }
+
+    .info-item {
+      text-align: center;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .info-item:hover {
+      transform: translateY(-10px) scale(1.05);
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .info-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9em;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .info-value {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.8em;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .portada-btn {
+      background: linear-gradient(45deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: white;
+      padding: 25px 60px;
+      font-size: 1.4em;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      border-radius: 60px;
+      cursor: pointer;
+      backdrop-filter: blur(20px);
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      opacity: 0;
+      transform: translateY(50px) scale(0.8);
+      animation: buttonEntrance 2s cubic-bezier(0.23, 1, 0.32, 1) 2.5s forwards;
+      position: relative;
+      overflow: hidden;
+      letter-spacing: 1px;
+    }
+
+    .portada-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: left 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .portada-btn:hover {
+      background: linear-gradient(45deg, rgba(255,255,255,0.3), rgba(255,255,255,0.2));
+      transform: translateY(-15px) scale(1.1);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .portada-btn:hover::before {
+      left: 100%;
+    }
+
+    @keyframes dramaticEntrance {
+      to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg);
+      }
+    }
+
+    @keyframes elegantFade {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes buttonEntrance {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Partículas flotantes mejoradas */
+    .portada-particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .portada-particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .portada-particle:nth-child(1) { 
+      width: 8px; height: 8px; 
+      background: radial-gradient(circle, #ffd700, #ff69b4);
+      left: 10%; animation: complexFloat 12s linear infinite;
+      animation-delay: 0s; 
+    }
+    .portada-particle:nth-child(2) { 
+      width: 6px; height: 6px; 
+      background: radial-gradient(circle, #00bfff, #9370db);
+      left: 20%; animation: complexFloat 15s linear infinite;
+      animation-delay: 2s; 
+    }
+    .portada-particle:nth-child(3) { 
+      width: 10px; height: 10px; 
+      background: radial-gradient(circle, #ff6347, #ffd700);
+      left: 30%; animation: complexFloat 18s linear infinite;
+      animation-delay: 4s; 
+    }
+    .portada-particle:nth-child(4) { 
+      width: 7px; height: 7px; 
+      background: radial-gradient(circle, #32cd32, #00bfff);
+      left: 40%; animation: complexFloat 14s linear infinite;
+      animation-delay: 1s; 
+    }
+    .portada-particle:nth-child(5) { 
+      width: 9px; height: 9px; 
+      background: radial-gradient(circle, #ff69b4, #9370db);
+      left: 50%; animation: complexFloat 16s linear infinite;
+      animation-delay: 6s; 
+    }
+    .portada-particle:nth-child(6) { 
+      width: 5px; height: 5px; 
+      background: radial-gradient(circle, #ffa500, #ff6347);
+      left: 60%; animation: complexFloat 13s linear infinite;
+      animation-delay: 3s; 
+    }
+    .portada-particle:nth-child(7) { 
+      width: 8px; height: 8px; 
+      background: radial-gradient(circle, #00fa9a, #32cd32);
+      left: 70%; animation: complexFloat 17s linear infinite;
+      animation-delay: 5s; 
+    }
+    .portada-particle:nth-child(8) { 
+      width: 6px; height: 6px; 
+      background: radial-gradient(circle, #ff1493, #ffd700);
+      left: 80%; animation: complexFloat 11s linear infinite;
+      animation-delay: 7s; 
+    }
+    .portada-particle:nth-child(9) { 
+      width: 7px; height: 7px; 
+      background: radial-gradient(circle, #00bfff, #ff69b4);
+      left: 90%; animation: complexFloat 19s linear infinite;
+      animation-delay: 8s; 
+    }
+
+    @keyframes complexFloat {
+      0% { 
+        transform: translateY(100vh) translateX(0) scale(0) rotate(0deg); 
+        opacity: 0; 
+      }
+      10% { 
+        opacity: 1; 
+        transform: scale(1) rotate(45deg); 
+      }
+      25% { 
+        transform: translateX(-30px) rotate(90deg); 
+      }
+      50% { 
+        transform: translateY(50vh) translateX(30px) rotate(180deg); 
+      }
+      75% { 
+        transform: translateX(-20px) rotate(270deg); 
+      }
+      90% { 
+        opacity: 1; 
+        transform: rotate(315deg); 
+      }
+      100% { 
+        transform: translateY(-100vh) translateX(10px) scale(0) rotate(360deg); 
+        opacity: 0; 
+      }
+    }
+
+    /* CARTA PRINCIPAL MEJORADA */
+    .main-container {
+      min-height: 100vh;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(120,119,198,0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255,119,198,0.3) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120,219,255,0.2) 0%, transparent 50%),
+        linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+      background-size: 400% 400%;
+      animation: advancedBackgroundShift 20s ease infinite;
+      position: relative;
+      padding: 80px 0;
+      overflow: hidden;
+    }
+
+    .main-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><defs><filter id="noiseFilter"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/></filter></defs><rect width="100%" height="100%" filter="url(%23noiseFilter)" opacity="0.03"/></svg>');
+      pointer-events: none;
+    }
+
+    @keyframes advancedBackgroundShift {
+      0% { background-position: 0% 50%; transform: scale(1); }
+      25% { background-position: 100% 25%; transform: scale(1.02); }
+      50% { background-position: 100% 100%; transform: scale(1); }
+      75% { background-position: 50% 100%; transform: scale(1.01); }
+      100% { background-position: 0% 50%; transform: scale(1); }
+    }
+
+    /* Lluvia de pétalos mejorada */
+    .petals {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .petal {
+      position: absolute;
+      border-radius: 50% 0 50% 0;
+      animation: advancedPetalFall linear infinite;
+      opacity: 0.9;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    }
+
+    .petal:nth-child(1) { 
+      width: 14px; height: 14px;
+      background: linear-gradient(45deg, #ff6b9d, #ffa726);
+      left: 5%; animation-duration: 15s; animation-delay: 0s; 
+    }
+    .petal:nth-child(2) { 
+      width: 10px; height: 10px;
+      background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+      left: 15%; animation-duration: 18s; animation-delay: 3s; 
+    }
+    .petal:nth-child(3) { 
+      width: 16px; height: 16px;
+      background: linear-gradient(45deg, #96ceb4, #ffeaa7);
+      left: 25%; animation-duration: 12s; animation-delay: 6s; 
+    }
+    .petal:nth-child(4) { 
+      width: 12px; height: 12px;
+      background: linear-gradient(45deg, #fd79a8, #fdcb6e);
+      left: 35%; animation-duration: 20s; animation-delay: 2s; 
+    }
+    .petal:nth-child(5) { 
+      width: 13px; height: 13px;
+      background: linear-gradient(45deg, #a29bfe, #6c5ce7);
+      left: 45%; animation-duration: 16s; animation-delay: 8s; 
+    }
+    .petal:nth-child(6) { 
+      width: 11px; height: 11px;
+      background: linear-gradient(45deg, #fd79a8, #e17055);
+      left: 55%; animation-duration: 14s; animation-delay: 4s; 
+    }
+    .petal:nth-child(7) { 
+      width: 15px; height: 15px;
+      background: linear-gradient(45deg, #00b894, #00cec9);
+      left: 65%; animation-duration: 19s; animation-delay: 7s; 
+    }
+    .petal:nth-child(8) { 
+      width: 9px; height: 9px;
+      background: linear-gradient(45deg, #fab1a0, #e17055);
+      left: 75%; animation-duration: 13s; animation-delay: 5s; 
+    }
+    .petal:nth-child(9) { 
+      width: 17px; height: 17px;
+      background: linear-gradient(45deg, #74b9ff, #0984e3);
+      left: 85%; animation-duration: 17s; animation-delay: 9s; 
+    }
+    .petal:nth-child(10) { 
+      width: 8px; height: 8px;
+      background: linear-gradient(45deg, #fd79a8, #fdcb6e);
+      left: 95%; animation-duration: 21s; animation-delay: 1s; 
+    }
+
+    @keyframes advancedPetalFall {
+      0% {
+        transform: translateY(-100vh) translateX(0) rotate(0deg) scale(0);
+        opacity: 0;
+      }
+      5% {
+        opacity: 0.9;
+        transform: scale(1) rotate(45deg);
+      }
+      25% {
+        transform: translateY(25vh) translateX(-50px) rotate(90deg) scale(1.1);
+      }
+      50% {
+        transform: translateY(50vh) translateX(30px) rotate(180deg) scale(0.9);
+      }
+      75% {
+        transform: translateY(75vh) translateX(-20px) rotate(270deg) scale(1.2);
+      }
+      95% {
+        opacity: 0.9;
+        transform: rotate(315deg) scale(0.8);
+      }
+      100% {
+        transform: translateY(100vh) translateX(10px) rotate(360deg) scale(0);
+        opacity: 0;
+      }
+    }
+
+    .carta-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .carta-container {
+      max-width: 900px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(40px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 40px;
+      padding: 100px 80px;
+      box-shadow: 
+        0 50px 100px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5),
+        0 0 150px rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+      transform: perspective(1500px) rotateX(2deg) rotateY(-1deg);
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .carta-container:hover {
+      transform: perspective(1500px) rotateX(0deg) rotateY(0deg) scale(1.02);
+      box-shadow: 
+        0 70px 140px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6),
+        0 0 200px rgba(255, 255, 255, 0.15);
+    }
+
+    .carta-container::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      background: linear-gradient(45deg, #ff6b9d, #4ecdc4, #45b7d1, #96ceb4, #ffa726, #fd79a8);
+      border-radius: 40px;
+      z-index: -1;
+      animation: ultimateBorderGlow 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes ultimateBorderGlow {
+      0% { 
+        opacity: 0.6; 
+        transform: scale(1); 
+        filter: blur(5px); 
+      }
+      100% { 
+        opacity: 0.9; 
+        transform: scale(1.03); 
+        filter: blur(8px); 
+      }
+    }
+
+    .carta-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      animation: ultimateShine 8s ease-in-out infinite;
+    }
+
+    @keyframes ultimateShine {
+      0% { left: -100%; }
+      50% { left: 100%; }
+      100% { left: -100%; }
+    }
+
+    .titulo-principal {
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 6.5em;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 60px;
+      text-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+      position: relative;
+      z-index: 1;
+      background: linear-gradient(45deg, #fff, #ffd700, #ff69b4, #00bfff, #32cd32);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      background-size: 200% 200%;
+      animation: textGradientShift 8s ease-in-out infinite;
+      opacity: 0;
+      transform: translateY(50px) scale(0.8);
+      animation: titleEntrance 2s cubic-bezier(0.23, 1, 0.32, 1) 0.5s forwards;
+    }
+
+    @keyframes textGradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes titleEntrance {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .titulo-principal::after {
+      content: '';
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 6px;
+      background: linear-gradient(90deg, transparent, #ff6b9d, #4ecdc4, #ffd700, transparent);
+      border-radius: 3px;
+      animation: lineGlow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes lineGlow {
+      0% { 
+        opacity: 0.6; 
+        box-shadow: 0 0 10px rgba(255, 107, 157, 0.3); 
+      }
+      100% { 
+        opacity: 1; 
+        box-shadow: 0 0 30px rgba(255, 107, 157, 0.8); 
+      }
+    }
+
+    .carta-texto {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6em;
+      line-height: 2.2;
+      color: rgba(255, 255, 255, 0.95);
+      font-weight: 400;
+      letter-spacing: 1.2px;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 60px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .parrafo {
+      opacity: 0;
+      transform: translateY(40px) rotateX(15deg);
+      animation: paragraphReveal 1.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+      margin-bottom: 35px;
+      padding: 0 20px;
+    }
+
+    .parrafo:nth-child(1) { animation-delay: 1s; }
+    .parrafo:nth-child(2) { animation-delay: 1.5s; }
+    .parrafo:nth-child(3) { animation-delay: 2s; }
+    .parrafo:nth-child(4) { animation-delay: 2.5s; }
+
+    @keyframes paragraphReveal {
+      to {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg);
+      }
+    }
+
+    .firma {
+      text-align: right;
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.5em;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.95);
+      margin-top: 50px;
+      opacity: 0;
+      transform: translateX(50px);
+      animation: signatureAppear 1.5s cubic-bezier(0.23, 1, 0.32, 1) 3s forwards;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    @keyframes signatureAppear {
+      to { 
+        opacity: 1; 
+        transform: translateX(0); 
+      }
+    }
+
+    /* Emojis animados mejorados */
+    .emoji-animado {
+      display: inline-block;
+      margin: 0 12px;
+      font-size: 1.2em;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+    }
+
+    .emoji-animado.luna {
+      animation: moonOrbit 12s linear infinite;
+      transform-origin: center;
+    }
+
+    .emoji-animado.estrella {
+      animation: starTwinkle 2s ease-in-out infinite alternate;
+    }
+
+    .emoji-animado.corazon {
+      animation: heartBeat 1.8s ease-in-out infinite;
+      color: #ff6b9d;
+      text-shadow: 0 0 20px rgba(255, 107, 157, 0.6);
+    }
+
+    @keyframes moonOrbit {
+      0% { transform: rotate(0deg) translateX(30px) rotate(0deg); }
+      100% { transform: rotate(360deg) translateX(30px) rotate(-360deg); }
+    }
+
+    @keyframes starTwinkle {
+      0% { 
+        transform: scale(1) rotate(0deg); 
+        opacity: 1; 
+      }
+      100% { 
+        transform: scale(1.4) rotate(180deg); 
+        opacity: 0.7; 
+      }
+    }
+
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.3) rotate(-5deg); }
+      50% { transform: scale(1.1) rotate(5deg); }
+      75% { transform: scale(1.4) rotate(-3deg); }
+    }
+
+    /* Responsive mejorado */
+    @media (max-width: 768px) {
+      .portada-titulo { font-size: 5em; }
+      .portada-subtitulo { font-size: 2em; }
+      .portada-info { 
+        grid-template-columns: 1fr; 
+        gap: 20px;
+      }
+      .carta-container { 
+        padding: 60px 40px; 
+        transform: none;
+        margin: 20px;
+      }
+      .titulo-principal { font-size: 4.5em; }
+      .carta-texto { font-size: 1.4em; }
+      .cursor { display: none; }
+      body { cursor: auto; }
+    }
+
+    @media (max-width: 480px) {
+      .portada-titulo { font-size: 3.5em; }
+      .portada-subtitulo { font-size: 1.6em; }
+      .carta-container { padding: 40px 25px; }
+      .titulo-principal { font-size: 3em; }
+      .carta-texto { font-size: 1.2em; line-height: 1.8; }
+      .portada-btn { padding: 20px 40px; font-size: 1.2em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor"></div>
+  
+  <!-- PORTADA -->
+  <div class="portada" id="portada">
+    <div class="portada-particles">
+      <div class="portada-particle"></div>
+      <div class="portada-particle"></div>
+      <div class="portada-particle"></div>
+      <div class="portada-particle"></div>
+      <div class="portada-particle"></div>
+      <div class="portada-particle"></div>
+      <div class="portada-particle"></div>
+      <div class="portada-particle"></div>
+      <div class="portada-particle"></div>
+    </div>
+    
+    <div class="portada-content">
+      <h1 class="portada-titulo">Una Carta Especial</h1>
+      <p class="portada-subtitulo">Escrita desde el corazón</p>
+      
+      <div class="portada-info">
+        <div class="info-item">
+          <div class="info-label">Hecho por</div>
+          <div class="info-value">Tu Admirador</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Fecha</div>
+          <div class="info-value">24 Julio 2025</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Para</div>
+          <div class="info-value">Una Persona Especial</div>
+        </div>
+      </div>
+      
+      <button class="portada-btn" onclick="abrirCarta()">Abrir Carta ✨</button>
+    </div>
+  </div>
+
+  <!-- CARTA PRINCIPAL -->
+  <div class="main-container">
+    <div class="petals">
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+    </div>
+
+    <div class="carta-wrapper">
+      <div class="carta-container">
+        <h1 class="titulo-principal">Para Ti</h1>
+        
+        <div class="carta-texto">
+          <p class="parrafo">Hola... <span class="emoji-animado luna">🌙</span></p>
+          
+          <p class="parrafo">Quería decirte que hay algo en ti que me inspira, que me calma y me emociona al mismo tiempo. Como si tu mirada fuera un cielo lleno de estrellas <span class="emoji-animado estrella">✨</span>, y yo, una pluma perdida que encontró sentido al escribirte.</p>
+          
+          <p class="parrafo">No sé si estas palabras lleguen al rincón de tu corazón, pero cada una fue pensada con cariño, como si mi alma te hablara en silencio. Cada letra es un susurro, cada frase una caricia invisible.</p>
+          
+          <p class="parrafo">Eres la melodía que mi corazón no sabía que necesitaba, la luz que ilumina mis pensamientos más profundos, el verso que completa mi poesía. En un mundo lleno de ruido, tú eres mi silencio perfecto.</p>
+        </div>
+        
+        <div class="firma">
+          — Con todo el cariño del mundo <span class="emoji-animado corazon">♥</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Cursor personalizado mejorado
+    const cursor = document.querySelector('.cursor');
+    let mouseX = 0, mouseY = 0;
+    let cursorX = 0, cursorY = 0;
+
+    // Seguimiento suave del cursor
+    function updateCursor() {
+      cursorX += (mouseX - cursorX) * 0.1;
+      cursorY += (mouseY - cursorY) * 0.1;
+      cursor.style.left = cursorX + 'px';
+      cursor.style.top = cursorY + 'px';
+      requestAnimationFrame(updateCursor);
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    updateCursor();
+
+    // Efectos de hover mejorados
+    document.addEventListener('mouseenter', (e) => {
+      if (e.target.classList.contains('portada-btn') || 
+          e.target.classList.contains('info-item')) {
+        cursor.classList.add('hover');
+      }
+    }, true);
+
+    document.addEventListener('mouseleave', (e) => {
+      if (e.target.classList.contains('portada-btn') || 
+          e.target.classList.contains('info-item')) {
+        cursor.classList.remove('hover');
+      }
+    }, true);
+
+    // Función para abrir la carta con efectos mejorados
+    function abrirCarta() {
+      const portada = document.getElementById('portada');
+      
+      // Efecto de sonido simulado con vibración (si está disponible)
+      if (navigator.vibrate) {
+        navigator.vibrate([100, 50, 100]);
+      }
+      
+      // Agregar clase de transición
+      portada.classList.add('fade-out');
+      
+      // Efecto de partículas explosivas
+      createExplosiveParticles();
+      
+      setTimeout(() => {
+        portada.style.display = 'none';
+        // Iniciar animaciones de la carta
+        initializeCardAnimations();
+      }, 2000);
+    }
+
+    // Crear partículas explosivas al abrir
+    function createExplosiveParticles() {
+      const colors = ['#ff6b9d', '#4ecdc4', '#45b7d1', '#ffd700', '#ff69b4'];
+      
+      for (let i = 0; i < 50; i++) {
+        const particle = document.createElement('div');
+        particle.style.position = 'fixed';
+        particle.style.width = Math.random() * 8 + 4 + 'px';
+        particle.style.height = particle.style.width;
+        particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        particle.style.borderRadius = '50%';
+        particle.style.left = '50%';
+        particle.style.top = '50%';
+        particle.style.pointerEvents = 'none';
+        particle.style.zIndex = '9998';
+        
+        document.body.appendChild(particle);
+        
+        const angle = (Math.PI * 2 * i) / 50;
+        const velocity = Math.random() * 300 + 200;
+        const vx = Math.cos(angle) * velocity;
+        const vy = Math.sin(angle) * velocity;
+        
+        let x = 0, y = 0;
+        let opacity = 1;
+        
+        function animateParticle() {
+          x += vx * 0.02;
+          y += vy * 0.02 + 2; // gravedad
+          opacity -= 0.02;
+          
+          particle.style.transform = `translate(${x}px, ${y}px)`;
+          particle.style.opacity = opacity;
+          
+          if (opacity > 0) {
+            requestAnimationFrame(animateParticle);
+          } else {
+            document.body.removeChild(particle);
+          }
+        }
+        
+        animateParticle();
+      }
+    }
+
+    // Inicializar animaciones de la carta
+    function initializeCardAnimations() {
+      const container = document.querySelector('.carta-container');
+      
+      // Efecto de entrada dramática
+      container.style.transform = 'perspective(1500px) rotateX(90deg) scale(0.8)';
+      container.style.opacity = '0';
+      
+      setTimeout(() => {
+        container.style.transition = 'all 2s cubic-bezier(0.23, 1, 0.32, 1)';
+        container.style.transform = 'perspective(1500px) rotateX(2deg) rotateY(-1deg) scale(1)';
+        container.style.opacity = '1';
+      }, 100);
+    }
+
+    // Efectos de paralaje suave
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const parallax = document.querySelector('.carta-container');
+      if (parallax) {
+        const speed = scrolled * 0.1;
+        parallax.style.transform = `perspective(1500px) rotateX(2deg) rotateY(-1deg) translateY(${speed}px)`;
+      }
+    });
+
+    // Efecto de escritura para el texto (opcional)
+    function typeWriterEffect() {
+      const paragraphs = document.querySelectorAll('.parrafo');
+      paragraphs.forEach((p, index) => {
+        const text = p.textContent;
+        p.textContent = '';
+        p.style.opacity = '1';
+        
+        setTimeout(() => {
+          let i = 0;
+          const timer = setInterval(() => {
+            if (i < text.length) {
+              p.textContent += text.charAt(i);
+              i++;
+            } else {
+              clearInterval(timer);
+            }
+          }, 50);
+        }, index * 1000);
+      });
+    }
+
+    // Efecto de ondas al hacer clic
+    document.addEventListener('click', (e) => {
+      if (e.target.classList.contains('portada-btn')) return;
+      
+      const ripple = document.createElement('div');
+      ripple.style.position = 'fixed';
+      ripple.style.borderRadius = '50%';
+      ripple.style.background = 'rgba(255, 255, 255, 0.3)';
+      ripple.style.transform = 'scale(0)';
+      ripple.style.animation = 'ripple 0.6s linear';
+      ripple.style.left = (e.clientX - 25) + 'px';
+      ripple.style.top = (e.clientY - 25) + 'px';
+      ripple.style.width = '50px';
+      ripple.style.height = '50px';
+      ripple.style.pointerEvents = 'none';
+      ripple.style.zIndex = '9999';
+      
+      document.body.appendChild(ripple);
+      
+      setTimeout(() => {
+        document.body.removeChild(ripple);
+      }, 600);
+    });
+
+    // Agregar animación de ondas
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes ripple {
+        to {
+          transform: scale(4);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Efecto de partículas que siguen al cursor
+    let particles = [];
+    
+    function createCursorParticle(x, y) {
+      if (particles.length > 20) return;
+      
+      const particle = document.createElement('div');
+      particle.style.position = 'fixed';
+      particle.style.width = '4px';
+      particle.style.height = '4px';
+      particle.style.backgroundColor = '#ffd700';
+      particle.style.borderRadius = '50%';
+      particle.style.left = x + 'px';
+      particle.style.top = y + 'px';
+      particle.style.pointerEvents = 'none';
+      particle.style.zIndex = '9997';
+      particle.style.opacity = '0.8';
+      
+      document.body.appendChild(particle);
+      particles.push(particle);
+      
+      let life = 1;
+      function fadeParticle() {
+        life -= 0.05;
+        particle.style.opacity = life;
+        particle.style.transform = `scale(${life})`;
+        
+        if (life > 0) {
+          requestAnimationFrame(fadeParticle);
+        } else {
+          document.body.removeChild(particle);
+          particles = particles.filter(p => p !== particle);
+        }
+      }
+      
+      fadeParticle();
+    }
+
+    let particleCounter = 0;
+    document.addEventListener('mousemove', (e) => {
+      particleCounter++;
+      if (particleCounter % 3 === 0) { // Crear partículas cada 3 movimientos
+        createCursorParticle(e.clientX, e.clientY);
+      }
+    });
+  </script>
+</body>
+</html>
